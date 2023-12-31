@@ -1,18 +1,23 @@
 <script setup>
-import { ref } from 'vue'
 import { Cloud } from '@iconoir/vue'
 
-const degree = ref(19)
+const props = defineProps({
+  city: String,
+  state: String,
+  degree: Number,
+  weather: String,
+})
 </script>
 
 <template>
   <div class="header">
     <div class="title">
-      <h1 class="city-name">Stockholm, Sweden</h1>
+      <h1 class="city-name">{{ city }}, {{ state }}</h1>
       <h3 class="date">Sun, 31 Dec</h3>
     </div>
     <div class="weather">
       <div class="icon">
+        {{ weather }}
         <Cloud
           color="lightblue"
           width="13rem"
