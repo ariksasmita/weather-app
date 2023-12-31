@@ -1,4 +1,8 @@
 <script setup>
+import { ref } from 'vue'
+import { Cloud } from '@iconoir/vue'
+
+const degree = ref(19)
 </script>
 
 <template>
@@ -9,11 +13,16 @@
     </div>
     <div class="weather">
       <div class="icon">
-        Icon here
+        <Cloud
+          color="lightblue"
+          width="13rem"
+          height="13rem"
+          stroke-width="2"
+         />
       </div>
     </div>
     <div class="temperature">
-      <h2 class="degree">19<span>&#176;C</span></h2>
+      <h2 class="degree">{{ degree }} <span>&#176;C</span></h2>
     </div>
   </div>
 </template>
