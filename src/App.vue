@@ -1,8 +1,14 @@
 <script setup>
 import Header from './components/Header.vue'
+import WeatherForm from './components/WeatherForm.vue'
+
+const handleSubmitSearch = (searchString) => {
+  console.log('here is the searchString', searchString)
+}
 </script>
 
 <template>
+  <WeatherForm @submitSearch="handleSubmitSearch" />
   <Header />
 </template>
 
