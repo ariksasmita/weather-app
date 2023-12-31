@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconoir/vue": "^7.3.0",
     "vue": "^3.3.11"
   },
   "devDependencies": {
