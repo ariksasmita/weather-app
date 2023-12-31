@@ -1,5 +1,5 @@
 <script setup>
-import Header from './components/Header.vue'
+import WeatherDisplay from './components/WeatherDisplay.vue'
 import WeatherForm from './components/WeatherForm.vue'
 
 const handleSubmitSearch = (searchString) => {
@@ -9,7 +9,7 @@ const handleSubmitSearch = (searchString) => {
 
 <template>
   <WeatherForm @submitSearch="handleSubmitSearch" />
-  <Header />
+  <WeatherDisplay />
 </template>
 
 <style scoped>
