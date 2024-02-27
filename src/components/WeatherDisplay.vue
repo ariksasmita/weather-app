@@ -1,12 +1,18 @@
 <script setup>
-import { Cloud } from '@iconoir/vue'
-
+import { defineProps, computed } from 'vue'
 const props = defineProps({
   city: String,
   state: String,
   degree: Number,
   weather: String,
+  icon: String,
 })
+
+const iconUrl = computed(() => {
+  if (!props.icon) return ''
+  return `https://openweathermap.org/img/wn/${props.icon}@2x.png`
+})
+
 </script>
 
 <template>
@@ -18,12 +24,7 @@ const props = defineProps({
     <div class="weather">
       <div class="icon">
         {{ weather }}
-        <Cloud
-          color="lightblue"
-          width="13rem"
-          height="13rem"
-          stroke-width="2"
-         />
+        <img :src="iconUrl" :alt="weather">
       </div>
     </div>
     <div class="temperature">

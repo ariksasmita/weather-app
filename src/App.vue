@@ -9,6 +9,7 @@ const lat = ref('')
 const lon = ref('')
 const degree = ref(0)
 const weather = ref('')
+const icon = ref('')
 
 const handleSubmitSearch = async (searchString) => {
   // Get City Coordinate
@@ -28,26 +29,41 @@ const handleSubmitSearch = async (searchString) => {
   } catch (e) {
     console.log(error);
   }
-  if (!lat.value && !lon.value) return
+  if (!lat.value && !lon.value) {
+    alert('not found')
+    return
+  }
   // Fetch weather data
   try {
     const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat.value}&lon=${lon.value}&appid=${appid}&units=metric`)
     const weatherResJson = await weatherRes.json()
     degree.value = weatherResJson?.main?.temp
-    weather.value = weatherResJson?.weather[0].main
+    weather.value = toSentenceCase(weatherResJson?.weather[0].description)
+    icon.value = weatherResJson?.weather[0].icon
   } catch (error) {
     console.log(error)
   }
 };
+
+// function to change string to sentence case for multiple words
+const toSentenceCase = (str) => {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
+};
+
 </script>
 
 <template>
-  <WeatherForm @submitSearch="handleSubmitSearch" />
+  <WeatherForm
+    @submitSearch="handleSubmitSearch"
+  />
   <WeatherDisplay
     :city="cityName"
     :state="stateName"
     :degree="degree"
     :weather="weather"
+    :icon="icon"
   />
 </template>
 
